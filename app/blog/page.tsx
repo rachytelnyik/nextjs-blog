@@ -23,12 +23,13 @@ const Blog = async (props: Props) => {
   const data = await getData();
   return (
     <div>
-      Blog
-      <ul>
-        {data.map((post) => (
-          <li key={post.id}>{post.title}</li>
-        ))}
-      </ul>
+      <h1>Blog</h1>
+      {data.map((post) => (
+        <div key={post.id}>
+          <h2>{post.title}</h2>
+          <p>{post.content}</p>
+        </div>
+      ))}
     </div>
   );
 };
