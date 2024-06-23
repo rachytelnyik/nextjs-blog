@@ -1,3 +1,4 @@
+import prisma from "@/prisma/prisma";
 import { Metadata } from "next";
 import React from "react";
 
@@ -9,20 +10,27 @@ export const metadata: Metadata = {
 };
 
 const getData = async () => {
-  const res = await fetch("https://api.example.com/...", {
-    cache: "force-cache",
-  });
+  const blogPost = await prisma.blogPost.findMany();
 
-  if (!res.ok) {
+  if (!blogPost) {
     throw new Error("Failed to fetch data");
   }
 
-  return res.json();
+  return blogPost;
 };
 
 const Blog = async (props: Props) => {
   const data = await getData();
-  return <div>Blog</div>;
+  return (
+    <div>
+      Blog
+      <ul>
+        {data.map((post) => (
+          <li key={post.id}>{post.title}</li>
+        ))}
+      </ul>
+    </div>
+  );
 };
 
 export default Blog;
