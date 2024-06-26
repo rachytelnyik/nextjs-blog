@@ -1,11 +1,16 @@
-import React from 'react'
+import { BlogPost } from "@prisma/client";
+import React from "react";
+import { useForm } from "react-hook-form";
 
-type Props = {}
+type Props = {
+  blogPost: Partial<BlogPost>;
+};
 
-const CreateEditBlogPostForm = (props: Props) => {
-  return (
-    <div>CreateEditBlogPostForm</div>
-  )
-}
+const CreateEditBlogPostForm = ({ blogPost }: Props) => {
+  const onSubmitHandler = () => {};
+  const {} = useForm();
 
-export default CreateEditBlogPostForm
+  return <form onSubmit={onSubmitHandler}></form>;
+};
+
+export default CreateEditBlogPostForm;

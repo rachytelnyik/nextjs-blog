@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import SessionWrapper from "./components/SessionWrapper";
 
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const revalidate = 3600 * 24;
@@ -20,7 +21,9 @@ export default function RootLayout({
   return (
     <SessionWrapper>
       <html lang="en">
-        <body className={inter.className}>{children}</body>
+        <body className={inter.className}>
+          {children}
+        </body>
       </html>
     </SessionWrapper>
   );
