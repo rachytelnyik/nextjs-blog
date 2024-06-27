@@ -1,11 +1,14 @@
-import React from 'react'
+import React from "react";
+import CreateEditBlogPostForm from "../CreateEditBlogPostForm";
 
-type Props = {}
+type Props = {};
 
 const CreateBlogPostPage = (props: Props) => {
   return (
-    <div>CreateBlogPostPage</div>
-  )
-}
+    <div>
+      <CreateEditBlogPostForm />
+    </div>
+  );
+};
 
-export default CreateBlogPostPage
+export default CreateBlogPostPage;

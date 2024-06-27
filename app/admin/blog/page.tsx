@@ -3,24 +3,29 @@ import {
   Table,
   Thead,
   Tbody,
-  Tfoot,
   Tr,
   Th,
   Td,
   TableCaption,
   TableContainer,
-} from "@chakra-ui/react";
-import {
   Tag,
   TagLabel,
-  TagLeftIcon,
-  TagRightIcon,
-  TagCloseButton,
 } from "@chakra-ui/react";
+import prisma from "@/prisma/prisma";
 
 type Props = {};
 
-const BlogAdmin = (props: Props) => {
+const getBlogPosts = async () => {
+  return await prisma.blogPost.findMany();
+};
+
+const BlogAdmin = async (props: Props) => {
+  const data = await getBlogPosts();
+
+  if (!data) {
+    return <div>No blog posts found</div>;
+  }
+
   return (
     <TableContainer>
       <Table variant="simple">
@@ -28,11 +33,14 @@ const BlogAdmin = (props: Props) => {
         <Thead>
           <Tr>
             <Th>Title</Th>
-            <Th>into</Th>
+            <Th>Link</Th>
+            <Th>Created At</Th>
+            <Th>Updated At</Th>
             <Th isNumeric>Actions</Th>
           </Tr>
         </Thead>
         <Tbody>
+          {}
           <Tr>
             <Td>inches</Td>
             <Td>
@@ -49,13 +57,6 @@ const BlogAdmin = (props: Props) => {
             <Td isNumeric>25.4</Td>
           </Tr>
         </Tbody>
-        <Tfoot>
-          <Tr>
-            <Th>To convert</Th>
-            <Th>into</Th>
-            <Th isNumeric>multiply by</Th>
-          </Tr>
-        </Tfoot>
       </Table>
     </TableContainer>
   );

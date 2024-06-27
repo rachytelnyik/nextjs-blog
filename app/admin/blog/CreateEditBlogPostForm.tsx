@@ -3,12 +3,12 @@ import React from "react";
 import { useForm } from "react-hook-form";
 
 type Props = {
-  blogPost: Partial<BlogPost>;
+  blogPost?: Partial<BlogPost>;
 };
 
 const CreateEditBlogPostForm = ({ blogPost }: Props) => {
   const onSubmitHandler = () => {};
-  const {} = useForm();
+  const {} = useForm();   
 
   return <form onSubmit={onSubmitHandler}></form>;
 };

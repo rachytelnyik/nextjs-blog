@@ -12,6 +12,7 @@ import {
   DrawerCloseButton,
 } from "@chakra-ui/react";
 import React from "react";
+import Link from "next/link";
 
 export default function DashboardLayout({
   children,
@@ -24,10 +25,10 @@ export default function DashboardLayout({
   if (session) {
     return (
       <ChakraProvider>
-        <>
-          <Button ref={btnRef} colorScheme="teal" onClick={onOpen}>
-            Open
-          </Button>
+        <Button ref={btnRef} onClick={onOpen} className=" fixed">
+          <span className="material-symbols-outlined">menu</span>
+        </Button>
+        <div className=" m-auto max-w-screen-xl">
           <Drawer
             isOpen={isOpen}
             placement="left"
@@ -37,26 +38,41 @@ export default function DashboardLayout({
             <DrawerOverlay />
             <DrawerContent>
               <DrawerCloseButton />
-              <DrawerHeader>Kronos Realm Admin</DrawerHeader>
+              <DrawerHeader>
+                <Link href="/" className=" font-bold text-green-700">
+                  Kronos Realm Admin
+                </Link>
+              </DrawerHeader>
 
               <DrawerBody>
                 <Input placeholder="Search..." />
                 <ul className="mt-4">
-                  <li>Dashboard</li>
-                  <li>Blog</li>
+                  <li>
+                    <Link
+                      href="/admin"
+                      className=" hover:text-green-700 font-semibold"
+                    >
+                      Dashboard
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href="/admin/blog"
+                      className=" hover:text-green-700 font-semibold"
+                    >
+                      Blog
+                    </Link>
+                  </li>
                 </ul>
               </DrawerBody>
 
               <DrawerFooter>
-                {/* <Button variant="outline" mr={3} onClick={onClose}>
-                  Cancel
-                </Button>
-                <Button colorScheme="blue">Save</Button> */}
+                <Button onClick={() => signOut()}>Sign out</Button>
               </DrawerFooter>
             </DrawerContent>
           </Drawer>
-        </>
-        {children}
+          {children}
+        </div>
       </ChakraProvider>
     );
   }
