@@ -2,7 +2,11 @@ import React from 'react'
 
 type Props = {}
 
-const UpdateBlogPostPage = (props: Props) => {
+const getData = async () => {
+  return {}
+}
+
+const UpdateBlogPostPage = async (props: Props) => {
   return (
     <div>UpdateBlogPostPage</div>
   )
