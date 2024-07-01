@@ -1,22 +1,52 @@
+"use client";
+
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 import React from "react";
 
 type Props = {};
 
 const Header = (props: Props) => {
+  const pathname = usePathname();
+
+  const activeStyle =
+    "hover:text-cyan-600 active:text-cyan-600 border-b-2 border-cyan-600 active:font-semibold";
+
+  const nonActiveStyle = "hover:animate-pulse";
+
+  const isActive = (path: string) => path === pathname;
+
   return (
     <div className="m-auto max-w-screen-md mb-4">
       <header className="flex items-center justify-between py-4">
-        <h1 className="text-xl font-medium">Kronos Realm</h1>
+        <Link href={"/"} className="text-xl font-medium">
+          Kronos Realm
+        </Link>
         <nav>
-          <ul className="flex space-x-4">
+          <ul className="flex space-x-4 font-bold">
             <li>
-              <a href="/blog">Blog</a>
+              <Link
+                className={isActive("/blog") ? activeStyle : nonActiveStyle}
+                href="/blog"
+              >
+                Blog
+              </Link>
             </li>
             <li>
-              <a href="/projects">Projects</a>
+              <Link
+                className={isActive("/projects") ? activeStyle : nonActiveStyle}
+                href="/projects"
+              >
+                Projects
+              </Link>
             </li>
             <li>
-              <a href="/about">About</a>
+              <Link
+                className={isActive("/about") ? activeStyle : nonActiveStyle}
+                href="/about"
+              >
+                About
+              </Link>
             </li>
           </ul>
         </nav>
