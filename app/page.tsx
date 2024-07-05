@@ -47,22 +47,25 @@ export default async function Home() {
         </div>
         <div className="col-span-4">image</div>
       </div>
-      <div className="m-auto max-w-screen-lg mt-20">
-        <h2 className="mb-4 text-2xl">Recent Posts</h2>
-        {data.map((post) => (
-          <div key={post.id}>
-            <h3 className="font-semibold text-xl">{post.title}</h3>
-            <p>{post.content}</p>
-            <Link href={`/blog/${post.link}`} className="underline">
-              Read more
+      <div className="m-auto max-w-screen-lg mt-20 grid grid-cols-12">
+        <div className="col-span-8">
+          <h2 className="mb-4 text-2xl">Recent Posts</h2>
+          {data.map((post) => (
+            <div key={post.id}>
+              <h3 className="font-semibold text-xl">{post.title}</h3>
+              <p>{post.content}</p>
+              <Link href={`/blog/${post.link}`} className="underline">
+                Read more
+              </Link>
+            </div>
+          ))}
+          <div className="mt-8">
+            <Link href="/blog" className="">
+              All posts
             </Link>
           </div>
-        ))}
-        <div className="mt-8">
-          <Link href="/blog" className="">
-            All posts
-          </Link>
         </div>
+        <div className="col-span-4 border p-4 border-cyan-500">CV and Last Experience</div>
       </div>
       <Footer />
     </>
